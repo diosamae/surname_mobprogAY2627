@@ -1,38 +1,82 @@
 
 import 'package:flutter/material.dart';
-import 'package:orale_labact0b/constant.dart';
-import 'package:orale_labact0b/widgets/custom_text.dart';
 
 class NotificationTile extends StatelessWidget {
-  final String title;
-  final String time;
-  final IconData icon;
-  final bool isUnread;
+  final String name;
+  final String post;
+  final String description;
 
   const NotificationTile({
     super.key,
-    required this.title,
-    required this.time,
-    required this.icon,
-    this.isUnread = false,
+    required this.name,
+    required this.post,
+    required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      tileColor: isUnread ? dkLightPrimary.withValues(alpha: 0.2) : null,
-      leading: CircleAvatar(
-        backgroundColor: dkSecondary,
-        child: Icon(icon, color: Colors.white),
-      ),
-      title: CustomText(
-        text: title,
-        weight: isUnread ? FontWeight.bold : FontWeight.normal,
-      ),
-      subtitle: CustomText(
-        text: time,
-        size: 12,
-        color: Colors.grey,
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 14,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(
+                  Icons.person,
+                  size: 22,
+                  color: Colors.black87,
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        'Post: $post',
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      Text(
+                        description,
+                        style: const TextStyle(
+                          fontSize: 10,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Icon(
+                  Icons.more_horiz,
+                  size: 20,
+                  color: Colors.black87,
+                ),
+              ],
+            ),
+          ),
+          const Divider(
+            height: 1,
+            thickness: 0.8,
+            color: Color(0xFFE0E0E0),
+          ),
+        ],
       ),
     );
   }
